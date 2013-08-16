@@ -1,35 +1,57 @@
+
+
 $(window).on("load resize", function() {
 
-	var div = $('div');
-	var divHeight = $(div).height();
-   	var divWidth  = $(div).width();
+var div = $('.oneHundred, .twoThird, .third' );
+var divHeight = $(div).height();
+var divWidth  = $(div).width();
 
-   	 $('img').each(function hipperRespond() {
+console.log(divWidth);
 
-        var height = $(this).height();  // Current image height
-        var width  = $(this).width();    // Current image width
-        var ratio  = width/height; 
+ $('img').each(function() {
 
-        var image = [height,width,ratio];
+    var height = $(this).height();  // Current image height
+    var width  = $(this).width();    // Current image width
+    var ratio  = width/height; 
 
-    	if ((divWidth >= image[1]) ||  (image[1] < divWidth)){
-    		$(this).css("width","100%");
-    	} 
+      //console.log(height + " " + width + " " + ratio);
 
-    	if (divHeight >= image[0]) {
-    		$(this).attr("height", divHeight);
-    		$(this).attr("width", divHeight * ratio);
-    	}
+    var image = [height,width,ratio];
 
-    	if (divHeight < image[0]) {
-    		$(this).removeAttr("height");
-    		$(this).removeAttr("width");
-    	}
+    console.log(height + " " +width+ " " +ratio);
 
-    	if (image[0] < divHeight){
-    		$(this).removeAttr('style');
-    	}
+        //console.log(image);
 
 
- 	 });
+        if (ratio ==1) { //square 
+                                                         
+                if ((divHeight >= height) && (divWidth <= width )) { 
+                    $(this).removeAttr('style');
+                    $(this).attr("height", divHeight);
+                    $(this).attr("width", divHeight);
+
+                    console.log("static height");
+                    }
+
+                 else{
+                    $(this).attr('style','width:100%');
+                    console.log("else");
+                     }                  
+                }
+
+        if (ratio > 1) { // width > height
+
+            if ((divWidth >= width) && (height >= divHeight)) { //img w less than divW and h > divH
+                $(this).attr("style","width:100%;height:auto"); // width set to 100%, height auto
+                console.log("b")
+                                        
+            } else {
+                $(this).removeAttr('style');                        
+                $(this).attr("width", divHeight*ratio);
+                $(this).attr("height", divHeight);                      
+                console.log("a")
+            }
+        }
+
+ });
 }); 
