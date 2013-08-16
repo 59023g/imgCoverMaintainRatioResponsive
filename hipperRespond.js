@@ -47,11 +47,26 @@ console.log(divWidth);
                                         
             } else {
                 $(this).removeAttr('style');                        
-                $(this).attr("width", divHeight*ratio);
+                $(this).attr("width", divWidth * ratio);
                 $(this).attr("height", divHeight);                      
                 console.log("a")
             }
         }
+
+        if (ratio < 1) { // height < width
+
+            if ((height >= divHeight) && (width < divWeight)) {
+                $(this).attr("width", divWidth);
+                $(this).attr("height", divWidth * ratio);
+
+            } else {
+                $(this).attr("style","width:100%;height:auto");                
+            }
+
+
+
+        }
+
 
  });
 }); 
