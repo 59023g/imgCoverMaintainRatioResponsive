@@ -1,25 +1,32 @@
-// jquery.pjax.js
+// Realized this could be done with CSS.  Set min-height and min-width both to 100%. Then set height and width to 'auto'
 
 
+window.onresize = function hippestRespond () {
 
-$(window).on("load resize", function hipperRespond() {
+    images = document.querySelectorAll('img, video');
 
- $('img').each(function() {
+    console.log(images)
 
-    var divHeight = $(this).parent().height(); // get height of parent div
-    var divWidth  = $(this).parent().width(); // get width of parent div 
-    var height = $(this).height();  // Current image height
-    var width  = $(this).width();    // Current image width
-    var height100 = 'height:100%;width:auto';
-    var width100 = 'width:100%;height:auto';
+    var h100 = 'height:100%;width:auto;';
+    var w100 = 'width:100%;height:auto';
 
-    if ((divWidth/width) > (divHeight/height)) {
-        $(this).removeAttr('style');
-        $(this).attr("style", width100); 
+    for (i = 0; i < images.length; i++) {
 
-    } else {
-        $(this).removeAttr('style');
-        $(this).attr("style", height100); 
+        h = images[i].height;
+        w = images[i].width;
+
+        hV = images[i].videoHeight
+        wV = images[i].videoWidth
+
+        hDiv = images[i].offsetParent.clientHeight + 1;
+        wDiv = images[i].offsetParent.clientWidth + 2;
+
+        if (((wDiv / w) > (hDiv / h)) || ((wDiv / wV) > (hDiv / hV))) {
+            images[i].removeAttribute("style")
+            images[i].setAttribute("style", w100)
+        } else {
+            images[i].removeAttribute("style")
+            images[i].setAttribute("style", h100)
+        }
     }
- });
-}); 
+}
