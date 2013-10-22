@@ -8,9 +8,9 @@ NOTE
 ====
 Can be done with pure CSS: 	
 
-  width: auto
-	height: auto
-	min-height: 100%
-	min-width: 100%
-	max-height: 5000%
-	max-width: 1000%
+  width: auto;
+	height: auto;
+	min-height: 100%;
+	min-width: 100%;
+	max-height: 5000%;
+	max-width: 1000%;
